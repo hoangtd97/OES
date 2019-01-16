@@ -1,5 +1,12 @@
 # API Transfer
 
+- [API Transfer](#api-transfer)
+  - [Note](#note)
+  - [Host : https://haraoes-onapp.sku.vn/hara_oes/admin/api](#host--httpsharaoes-onappskuvnhara_oesadminapi)
+  - [List Transfer status](#list-transfer-status)
+  - [Xử lý điều chuyển](#xử-lý-điều-chuyển)
+  - [[ONLY TEST] Tạo điều chuyển](#only-test-tạo-điều-chuyển)
+
 ## Note
 * [15/01/2019] Thêm thông tin cập nhật số lượng item nhận
 

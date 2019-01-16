@@ -1,5 +1,10 @@
 # API Authorization
 
+- [API Authorization](#api-authorization)
+  - [Host : https://haraoes-onapp.sku.vn/hara_oes/admin/api](#host--httpsharaoes-onappskuvnhara_oesadminapi)
+  - [Signin :](#signin-)
+  - [Usage :](#usage-)
+
 ## Host : https://haraoes-onapp.sku.vn/hara_oes/admin/api
 
 ## Signin :

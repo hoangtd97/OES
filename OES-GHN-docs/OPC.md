@@ -1,5 +1,13 @@
 # API OPC
 
+- [API OPC](#api-opc)
+  - [Note](#note)
+  - [Host : https://haraoes-onapp.sku.vn/hara_oes/admin/api](#host--httpsharaoes-onappskuvnhara_oesadminapi)
+  - [List order status](#list-order-status)
+  - [Lấy danh sách đơn hàng](#lấy-danh-sách-đơn-hàng)
+  - [Lấy chi tiết đơn hàng](#lấy-chi-tiết-đơn-hàng)
+  - [Xử lý đơn hàng](#xử-lý-đơn-hàng)
+
 ## Note
 * [16/01/2019] Thêm thông hủy - nhập trả đơn hàng : nhập trả một phần
 
@@ -710,9 +718,11 @@
 ## Lấy chi tiết đơn hàng
 
 ### Request
+```
 * Path        : /orders/${order_id}
 * Simple path : /orders/1001145807
 * Method      : GET
+```
 
 ### Response
 * Success
@@ -1264,77 +1274,86 @@
 
 ## Xử lý đơn hàng
 
-### Request 
+### Request   
 
-*  Đóng gói - Chờ giao
+*  Đóng gói - Chờ giao  
+```
   * Path        : /order-online/${order_id}/wait-ship
   * Simple path : /order-online/1001140437/wait-ship
   * Method      : PUT
   * Body        : None
+```
 
 * Đã giao vận chuyển
+```
   * Path        : /order-online/${order_id}/shipped
   * Simple path : /order-online/1001140437/shipped
   * Method      : PUT
   * Body        : None
+```
 
 * Yêu cầu hủy đơn
+```
   * Path        : /order-online/${order_id}/request-cancel
   * Simple path : /order-online/1001140437/request-cancel
   * Method      : PUT
   * Body        : None
+```
 
 * Nhập trả đơn hàng đã yêu cầu huỷ
+```
   * Path        : /order-online/${order_id}/cancel-refund
   * Simple path : /order-online/1001140437/cancel-refund
   * Method      : PUT
-  * Body        : 
-    * Model  
+  * Body        : xem bên dưới
+```
 
-      | field | type | example | description |
-      |-      |-     |-        |-            |
-      | reason | string | "customer" | Lý do hủy đơn hàng, một trong lý do sau : customer (khách hàng đổi ý), inventory (Hết hàng), fraud (Đơn hàng giả mạo), other (còn hàng) |
-      | note | string | "Sản phẩm không nguyên tem" | Ghi chú|
-      | is_refund_partial | boolean | true | Hoàn trả một phần, nếu đúng, cần đính kèm thông tin hoàn trả, ngược lại toàn bộ sản phẩm sẽ được hoàn trả |
-      | refund | object | {} | Thông tin hoàn trả, xem bên dưới |
+  * Dữ liệu yêu cầu hủy - nhập trả
 
-    * Thông tin hoàn trả
+    | field | type | example | description |
+    |-      |-     |-        |-            |
+    | reason | string | "customer" | Lý do hủy đơn hàng, một trong lý do sau : customer (khách hàng đổi ý), inventory (Hết hàng), fraud (Đơn hàng giả mạo), other (còn hàng) |
+    | note | string | "Sản phẩm không nguyên tem" | Ghi chú|
+    | is_refund_partial | boolean | true | Hoàn trả một phần, nếu đúng, cần đính kèm thông tin hoàn trả, ngược lại toàn bộ sản phẩm sẽ được hoàn trả |
+    | refund | object | {} | Thông tin hoàn trả, xem bên dưới |
 
-      | field         | type   | example                             | description                                                  |
-      |-              |-       |-                                    |-                                                             |
-      | refund_reason | number | 7                                   | Mã lý do hoàn trả, xem bảng lý do hoàn trả                   |
-      | note          | string | "Sản phẩm không nguyên tem"         | Ghi chú                                                      |
-      | amount        | number | 132700                              | Số tiền hoàn trả                                             |
-      | line_items    | array  | [{ id : 1000604865, quantity : 1 }] | Danh sách sản phẩm hoàn trả, bao gồm id và số lượng hoàn trả |
+  * Thông tin hoàn trả
 
-    * Lý do hoàn trả
+    | field         | type   | example                             | description                                                  |
+    |-              |-       |-                                    |-                                                             |
+    | refund_reason | number | 7                                   | Mã lý do hoàn trả, xem bảng lý do hoàn trả                   |
+    | note          | string | "Sản phẩm không nguyên tem"         | Ghi chú                                                      |
+    | amount        | number | 132700                              | Số tiền hoàn trả                                             |
+    | line_items    | array  | [{ id : 1000604865, quantity : 1 }] | Danh sách sản phẩm hoàn trả, bao gồm id và số lượng hoàn trả |
 
-      | code | description            |
-      | -    | -                      |
-      | 1    | Nhập liệu sai          |
-      | 3    | Khách hàng không thích |
-      | 5    | Không vừa size         |
-      | 7    | Sản phẩm lỗi           |
-      | 9    | Khác                   |
-      | 11   | Đóng gói sai           |
+  * Lý do hoàn trả
 
-    * Example
-    ```json
-    {
-      "reason"            : "customer",
-      "note"              : "Sản phẩm không nguyên tem",
-      "is_refund_partial" : true,
-      "refund" : {
-          "refund_reason" : 7,
-          "note"          : "Sản phẩm không nguyên tem",
-          "amount"        : 132700,
-          "line_items"    : [{
-              "id"        : 1000604865,
-              "quantity"  : 1
-          }]
-      }
+    | code | description            |
+    | -    | -                      |
+    | 1    | Nhập liệu sai          |
+    | 3    | Khách hàng không thích |
+    | 5    | Không vừa size         |
+    | 7    | Sản phẩm lỗi           |
+    | 9    | Khác                   |
+    | 11   | Đóng gói sai           |
+
+  * Example
+  ```json
+  {
+    "reason"            : "customer",
+    "note"              : "Sản phẩm không nguyên tem",
+    "is_refund_partial" : true,
+    "refund" : {
+        "refund_reason" : 7,
+        "note"          : "Sản phẩm không nguyên tem",
+        "amount"        : 132700,
+        "line_items"    : [{
+            "id"        : 1000604865,
+            "quantity"  : 1
+        }]
     }
-    ```
+  }
+  ```
 
 ### Response
 
