@@ -45,11 +45,14 @@
       }]
   }
   ```
+  * Note        : Nếu nhận dư, OES tạo phiếu điều chuyển lượng sản phẩm chênh lệch từ cửa hàng đi đến cửa hàng đến
+
 #### Xử lý nhận thiếu
   * Path        : /transfers/${transfer_id}/handle-miss
   * Simple path : /transfers/100003/handle-miss
   * Method      : PUT
   * Body        : empty
+  * Note        : OES tạo phiếu điều chuyển lượng sản phẩm thất thoát về lại cửa hàng đi
 
 ### Response
 
