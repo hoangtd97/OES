@@ -39,6 +39,11 @@
       }]
   }
   ```
+* Xử lý nhận thiếu
+  * Path        : /transfers/${transfer_id}/handle-miss
+  * Simple path : /transfers/100003/handle-miss
+  * Method      : PUT
+  * Body        : empty
 
 ### Response
 
