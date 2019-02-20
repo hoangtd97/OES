@@ -14,6 +14,7 @@
     - [Request](#request-2)
       - [Đóng gói - Chờ giao](#Đóng-gói---chờ-giao)
       - [Đã giao vận chuyển](#Đã-giao-vận-chuyển)
+      - [Hoàn tất đơn hàng](#Hoàn-tất-đơn-hàng)
       - [Yêu cầu hủy đơn](#yêu-cầu-hủy-đơn)
       - [Nhập trả đơn hàng đã yêu cầu huỷ](#nhập-trả-đơn-hàng-đã-yêu-cầu-huỷ)
     - [Response](#response-2)
@@ -1298,6 +1299,14 @@
 ```
   * Path        : /order-online/${order_id}/shipped
   * Simple path : /order-online/1001140437/shipped
+  * Method      : PUT
+  * Body        : None
+```
+
+#### Hoàn tất đơn hàng
+```
+  * Path        : /order-online/${order_id}/complete
+  * Simple path : /order-online/1001140437/complete
   * Method      : PUT
   * Body        : None
 ```
