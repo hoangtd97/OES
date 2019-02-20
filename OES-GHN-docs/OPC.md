@@ -1,12 +1,22 @@
 # API OPC
 
-- [API OPC](#api-opc)
+- [API OPC](#api-opc)- [API OPC](#api-opc)
   - [Note](#note)
   - [Host : https://haraoes-onapp.sku.vn/hara_oes/admin/api](#host--httpsharaoes-onappskuvnhara_oesadminapi)
   - [List order status](#list-order-status)
   - [Lấy danh sách đơn hàng](#lấy-danh-sách-đơn-hàng)
+    - [Request](#request)
+    - [Response](#response)
   - [Lấy chi tiết đơn hàng](#lấy-chi-tiết-đơn-hàng)
+    - [Request](#request-1)
+    - [Response](#response-1)
   - [Xử lý đơn hàng](#xử-lý-đơn-hàng)
+    - [Request](#request-2)
+      - [Đóng gói - Chờ giao](#Đóng-gói---chờ-giao)
+      - [Đã giao vận chuyển](#Đã-giao-vận-chuyển)
+      - [Yêu cầu hủy đơn](#yêu-cầu-hủy-đơn)
+      - [Nhập trả đơn hàng đã yêu cầu huỷ](#nhập-trả-đơn-hàng-đã-yêu-cầu-huỷ)
+    - [Response](#response-2)
 
 ## Note
 * [16/01/2019] Thêm thông hủy - nhập trả đơn hàng : nhập trả một phần
@@ -1276,7 +1286,7 @@
 
 ### Request   
 
-*  Đóng gói - Chờ giao  
+####  Đóng gói - Chờ giao  
 ```
   * Path        : /order-online/${order_id}/wait-ship
   * Simple path : /order-online/1001140437/wait-ship
@@ -1284,7 +1294,7 @@
   * Body        : None
 ```
 
-* Đã giao vận chuyển
+#### Đã giao vận chuyển
 ```
   * Path        : /order-online/${order_id}/shipped
   * Simple path : /order-online/1001140437/shipped
@@ -1292,7 +1302,7 @@
   * Body        : None
 ```
 
-* Yêu cầu hủy đơn
+#### Yêu cầu hủy đơn
 ```
   * Path        : /order-online/${order_id}/request-cancel
   * Simple path : /order-online/1001140437/request-cancel
@@ -1300,7 +1310,7 @@
   * Body        : None
 ```
 
-* Nhập trả đơn hàng đã yêu cầu huỷ
+#### Nhập trả đơn hàng đã yêu cầu huỷ
 ```
   * Path        : /order-online/${order_id}/cancel-refund
   * Simple path : /order-online/1001140437/cancel-refund

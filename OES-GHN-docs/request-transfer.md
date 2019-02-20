@@ -5,7 +5,14 @@
   - [Host : https://haraoes-onapp.sku.vn/hara_oes/admin/api](#host--httpsharaoes-onappskuvnhara_oesadminapi)
   - [List request transfer status](#list-request-transfer-status)
   - [API Xử lý phiếu yêu cầu chuyển hàng](#api-xử-lý-phiếu-yêu-cầu-chuyển-hàng)
+    - [Request](#request)
+      - [Duyệt](#duyệt)
+      - [Từ chối duyệt](#từ-chối-duyệt)
+      - [Tạo điều chuyển](#tạo-điều-chuyển)
+    - [Response](#response)
   - [[ONLY TEST] Tạo yêu cầu điều chuyển](#only-test-tạo-yêu-cầu-điều-chuyển)
+    - [Request](#request-1)
+    - [Response](#response-1)
 
 ## Note
 * [15/01/2019] Thêm thông tin cập nhật số lượng item điều chuyển
@@ -27,13 +34,13 @@
 ### Request 
 
 
-* Duyệt
+#### Duyệt
   * Path        : /request-transfers/${request_transfer_id}/approve
   * Simple path : /request-transfers/100002/approve
   * Method      : PUT
   * Body        : None
 
-* Từ chối duyệt
+#### Từ chối duyệt
   * Path        : /request-transfers/${request_transfer_id}/deny
   * Simple path : /request-transfers/100003/deny
   * Method      : PUT
@@ -44,7 +51,7 @@
   }
   ```
 
-* Tạo điều chuyển
+#### Tạo điều chuyển
   * Path        : /request-transfers/${request_transfer_id}/create-transfer
   * Simple path : /request-transfers/100000/create-transfer
   * Method      : PUT

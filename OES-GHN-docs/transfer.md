@@ -5,7 +5,13 @@
   - [Host : https://haraoes-onapp.sku.vn/hara_oes/admin/api](#host--httpsharaoes-onappskuvnhara_oesadminapi)
   - [List Transfer status](#list-transfer-status)
   - [Xử lý điều chuyển](#xử-lý-điều-chuyển)
+    - [Request](#request)
+      - [Nhận hàng](#nhận-hàng)
+      - [Xử lý nhận thiếu](#xử-lý-nhận-thiếu)
+    - [Response](#response)
   - [[ONLY TEST] Tạo điều chuyển](#only-test-tạo-điều-chuyển)
+    - [Request](#request-1)
+    - [Response](#response-1)
 
 ## Note
 * [15/01/2019] Thêm thông tin cập nhật số lượng item nhận
@@ -24,7 +30,7 @@
 
 ### Request
 
-* Nhận hàng
+#### Nhận hàng
   * Path        : /transfers/${transfer_id}/receive
   * Simple path : /transfers/100003/receive
   * Method      : PUT
@@ -39,7 +45,7 @@
       }]
   }
   ```
-* Xử lý nhận thiếu
+#### Xử lý nhận thiếu
   * Path        : /transfers/${transfer_id}/handle-miss
   * Simple path : /transfers/100003/handle-miss
   * Method      : PUT
