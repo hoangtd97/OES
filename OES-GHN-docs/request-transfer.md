@@ -59,8 +59,7 @@
   ```json
     {
         "line_items_transfers" : [{
-            "variant_id"               : "101407454",
-            "variant_barcode"          : "HEO_MOI",
+            "variant_barcode"          : "8935263456504",
             "variant_accept_quantity"  : 50,             // Số lượng duyệt - điều chuyển
             "note"                     : "..."
 

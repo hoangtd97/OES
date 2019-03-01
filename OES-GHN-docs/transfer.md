@@ -38,8 +38,7 @@
  ```json
   {
       "line_items_transfers" : [{
-          "variant_id"                 : "101345139",
-          "variant_barcode"            : "CUA_L",
+          "variant_barcode"            : "8935263456504",
           "variant_receive_quantity"   : 50,           // số lượng sản phẩm nhận
           "note"                       : "..."
       }]
