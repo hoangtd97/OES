@@ -4,13 +4,20 @@
 
 Gồm 2 phần :
 
-* Seller :
+* Lưu ý : Dữ liệu bên dưới chú thích `Thông tin sau khi tạo` không bắt buộc, nhưng khuyến khích truyền nếu có dữ liệu
+
+```json
+{
+  "seller"          : {},
+  "oes_extend_data" : {}
+}
+```
+
+### Seller :
   * tham khảo [Haravan Order API](https://docs.haravan.com/blogs/api-reference/1000018025-order#show)
 
   ```js
   {
-    'id'                       : {type: Number, require: true, unique: true},
-    'order_number'             : {type: String, default: ""},
     "user_id"                  : {type: Number, default: null},
     'location_id'              : {type: Number, default: 0},
 
@@ -55,12 +62,6 @@ Gồm 2 phần :
       'district_code'          : {type: String, default: ""},
       'ward_code'              : {type: String, default: ""},
     },
-    'shipping_lines'           : [{
-      "code"   : { type: String, example: "Giao hàng tận nơi"},
-      "price"  : { type: Number, example: 10000              },
-      "source" : { type: String                              },
-      "title"  : { type: String, example: "Giao hàng tận nơi"},
-    }],
     'billing_address'          : {
       'address1'               : {type: String, default: ""},
       'address2'               : {type: String, default: ""},
@@ -76,30 +77,12 @@ Gồm 2 phần :
       'district_code'          : {type: String, default: ""},
       'ward_code'              : {type: String, default: ""}
     },
-
-    //----------------------- Time ---------------------------
-    'cancelled_at'             : {type: Date, default: null},
-    'closed_at'                : {type: Date, default: null},
-    'created_at'               : {type: Date, default: Date.now},
-    'confirmed_at'             : {type: Date, default: Date.now},
-    'updated_at'               : {type: Date, default: Date.now},
-    'created_at'               : {type: Date, default: Date.now},
-    //------------------------ Status -----------------------
-    'cancel_reason'            : {type: String, default: ""},
-    'financial_status'         : {type: String, default: ""},
-    "closed_status"            : {type: String, default: ""},
-    "cancelled_status"         : {type: String, default: ""},
-    "confirmed_status"         : {type: String, default: ""},
-    'fulfillment_status'       : {type: String, default: ""},
-    //------------------------ + ----------------------------
-    'currency'                 : {type: String , default: 'VND' },
-    "is_cod_gateway"           : {type: Boolean, default: false },
-    'gateway'                  : {type: String                  },
-    'gateway_code'             : {type: String , lowercase: true},
-    'source'                   : {type: String , default: ""    },
-    'source_name'              : {type: String , default: ""    },     
-    'note_attributes'          : [],
-    'note'                     : {type: String, default: ""},
+    'shipping_lines'           : [{
+      "code"   : { type: String, example: "Giao hàng tận nơi"},
+      "price"  : { type: Number, example: 10000              },
+      "source" : { type: String                              },
+      "title"  : { type: String, example: "Giao hàng tận nơi"},
+    }],
 
     // tham khảo : https://docs.haravan.com/blogs/api-reference/1000018042-transaction
     "transactions" : { description: 'Nếu không truyền, hệ thống tự động sinh ra', type: [{
@@ -113,10 +96,40 @@ Gồm 2 phần :
       "id"             : { type: Number  , example: 1000484797                       },
       "created_at"     : { type: Date    , example: "2019-03-05T04:53:37.057Z"       },
     }]}
+
+    //------------------------ khác ----------------------------
+    'currency'                 : {type: String , default: 'VND' },
+    "is_cod_gateway"           : {type: Boolean, default: false },
+    'gateway'                  : {type: String                  },
+    'gateway_code'             : {type: String , lowercase: true},
+    'source'                   : {type: String , default: ""    },
+    'source_name'              : {type: String , default: ""    },     
+    'note_attributes'          : [],
+    'note'                     : {type: String, default: ""},
+
+    //--------------------- Thông tin sau khi tạo -----------------
+    'id'                       : {type: Number, require: true, unique: true},
+    'order_number'             : {type: String, default: ""},
+
+    ////----------------------- Time ---------------------------
+    'cancelled_at'             : {type: Date, default: null},
+    'closed_at'                : {type: Date, default: null},
+    'created_at'               : {type: Date, default: Date.now},
+    'confirmed_at'             : {type: Date, default: Date.now},
+    'updated_at'               : {type: Date, default: Date.now},
+    'created_at'               : {type: Date, default: Date.now},
+
+    ////------------------------ Status -----------------------
+    'cancel_reason'            : {type: String, default: ""},
+    'financial_status'         : {type: String, default: ""},
+    "closed_status"            : {type: String, default: ""},
+    "cancelled_status"         : {type: String, default: ""},
+    "confirmed_status"         : {type: String, default: ""},
+    'fulfillment_status'       : {type: String, default: ""},
   }
   ```
 
-* Dữ liệu mở rộng của OES :
+### Dữ liệu mở rộng của OES :
 
 ```js
 {
@@ -124,7 +137,6 @@ Gồm 2 phần :
   "reorder_from_order_number" : { description: 'order number của đơn hàng cũ' , type : String , default : "" },
   "user_sale"                 : { description: 'Mã nhân viên bán hàng'        , type : Number , default : 0  },
   'shop_id'                   : { description: 'Mã cửa hàng'                  , type : Number , default : 0  },
-  "store_id"                  : { description: 'Mã chi nhánh'                 , type : Number , default : 0  },
   "location_id"               : { description: 'Mã kho'                       , type : Number , default : 0  }, 
   //-------------------------------------- Thông tin xử lý đơn hàng --------------------------------------------------
   "status"                : { description: 'Trạng thái đơn hàng, xem bên dưới'     , type : Number  , default : 0    },
@@ -218,7 +230,6 @@ Gồm 2 phần :
     {
       'type'        : { description: 'loại : 0 = trả, 1 = yêu cầu trả', type : Number, default : 0},
       "id"          : { description: 'Mã phiếu trả ( refund id )'     , type : Number, default : 0},
-      'store_id'    : { description: 'Mã chi nhánh trả hàng'          , type : Number, default : 0},
       'location_id' : { description: 'Mã kho trả hàng'                , type : Number, default : 0},
       'reason'       : { description: 'Lý do trả', enum : [
         1 , // Nhập liệu sai
@@ -235,7 +246,6 @@ Gồm 2 phần :
         "id"       : { description: 'Mã line item' , type : Number, default : 0},
         "quantity" : { description: 'Số lượng item', type : Number, default : 0},
       }],
-      "created_at" : { description: 'Ngày trả', type : Date, default : null},
       "note"       : { description: 'Ghi chú', type : String, default : null},
       "restock"       : { description: 'Nhập kho sản phẩm trả ?', type : boolean, default : true},
       "transactions" : { description: 'Nếu không truyền, hệ thống tự động sinh ra', type: [{
@@ -245,7 +255,8 @@ Gồm 2 phần :
         "id"         : { type: Number, example: 1000484797                       },
         "kind"       : { type: String, default: "refund"                         },
         "status"     : { type: String, default: "success"                        },
-      }]}
+      }]},
+      "created_at" : { description: 'Ngày trả', type : Date, default : null},
     }
   ],
   //------------------------- Thông tin đổi hàng ---------------------
@@ -265,7 +276,6 @@ Gồm 2 phần :
           "quantity"   : { description: 'Số lượng của sản phẩm mới', type : Number, default : 0} 
         }]
       }],
-      'store_id'        : { description: 'Mã chi nhánh', type : Number, default : 0},
       'location_id'     : { description: 'Mã kho', type : Number, default : 0},
       'reason'          : { description: 'Lý do đổi', enum : [
         20, // đổi hàng 
