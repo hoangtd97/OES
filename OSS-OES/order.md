@@ -48,8 +48,6 @@ Gồm 2 phần :
       'company'                : {type: String, default: ""},
       'first_name'             : {type: String, default: ""},
       'last_name'              : {type: String, default: ""},
-      'latitude'               : {type: Number, default: 0},
-      'longitude'              : {type: Number, default: 0},
       'phone'                  : {type: String, default: ""},
       'zip'                    : {type: String, default: ""},
       'province_code'          : {type: String, default: ""},
@@ -103,9 +101,18 @@ Gồm 2 phần :
     'note_attributes'          : [],
     'note'                     : {type: String, default: ""},
 
-    'fulfillments'             : [{}], // tham khảo : https://docs.haravan.com/blogs/api-reference/1000018043-fulfillment
-    'transactions'             : [{}], // tham khảo : https://docs.haravan.com/blogs/api-reference/1000018042-transaction
-    'refunds'                  : [{}], // tham khảo : https://docs.haravan.com/blogs/api-reference/1000017998-refund
+    // tham khảo : https://docs.haravan.com/blogs/api-reference/1000018042-transaction
+    "transactions" : { description: 'Nếu không truyền, hệ thống tự động sinh ra', type: [{
+      //-------------------- Thông tin tạo ------------------------------------
+      "amount"         : { type: String  , example: 60000                            },
+      "gateway"        : { type: String  , example: "Thanh toán khi giao hàng (COD)" },
+      "kind"           : { type: String  , default: "capture"                        },
+      "status"         : { type: String  , default: "success"                        },
+      "is_cod_gateway" : { type: Boolean , default: false                            },
+      //--------------------- Thông tin sau khi tạo -------------------------
+      "id"             : { type: Number  , example: 1000484797                       },
+      "created_at"     : { type: Date    , example: "2019-03-05T04:53:37.057Z"       },
+    }]}
   }
   ```
 
@@ -160,31 +167,51 @@ Gồm 2 phần :
     3, // Nhân viên cửa hàng tự giao
     5, // Khách hàng đến lấy
   ]},
-
-  "fulfillment": {
-    "carrier_order_id" : { description: 'Mã đơn hàng của đơn vị vận chuyển' , type : Schema.Types.Mixed, default : 0 },
-    "tracking_link"    : { description: 'Tracking link'                     , type : String            , default : ''},
-    "tracking_code"    : { description: 'Tracking code'                     , type : String            , default : ''},
-    "user_shipping"    : { description: 'Mã nhân viên giao hàng \
+  "user_shipping"    : { description: 'Mã nhân viên giao hàng \
                                          (phương thức vận chuyển = Nhân viên cửa hàng tự giao)', type : String, default : ''},
-
-    // Thông tin vận chuyển gửi sang seller, chỉ cần khi phương thức vận chuyển = nhà vận chuyển
-    "tracking_company"             : { type : String  , default : ''    },
-    "shipping_package"             : { type : Number  , default : 0     },
-    "carrier_service_package"      : { type : String  , default : 0     },
-    "carrier_service_code"         : { type : String  , default : ''    },
-    "carrier_service_package_name" : { type : String  , default : ''    },
-    "note"                         : { type : String  , default : ''    },
-    "notify_customer"              : { type : Boolean , default : false },
-    "cod_amount"                   : { type : Number  , default : 0     },
-    "transport_type"               : { type : Number  , default : 0     },
-    "sender_phone"                 : { type : String  , default : ''    },
-    "is_new_service_package"       : { type : Boolean , default : true  },
-    "is_view_before"               : { type : Number  , default : 1     },
-    "package_length"               : { type : Number  , default : 0     },
-    "package_width"                : { type : Number  , default : 0     },
-    "package_height"               : { type : Number  , default : 0     },
-    "total_weight"                 : { type : Number  , default : 0     },
+  
+  //------------------------ Thông tin vận chuyển của seller, chỉ cần khi phương thức vận chuyển = nhà vận chuyển ---------
+  //--------------------------- tham khảo : https://docs.haravan.com/blogs/api-reference/1000018043-fulfillment -----------
+  "fulfillment" : {
+    "carrier_order_id"             : { type : String, description: 'Mã đơn hàng của đơn vị vận chuyển'},
+    // ---------------------- Thông tin tạo --------------------------------------------
+    "tracking_link"                : { type : String                                       },
+    "tracking_code"                : { type : String                                       },
+    "tracking_company"             : { type : String  , example: 'Giao Hàng Nhanh 2018'    },
+    "shipping_package"             : { type : Number  , example: 11                        },
+    "carrier_service_package"      : { type : Number  , example: 53320                     },
+    "carrier_service_code"         : { type : String  , example: ''                        },
+    "carrier_service_package_name" : { type : String  , example: 'Nhanh'                   },
+    "note"                         : { type : String  , example: 'Giao vào buổi chiều'     },
+    "notify_customer"              : { type : Boolean , example: false                     },
+    "cod_amount"                   : { type : Number  , example: 206200                    },
+    "sender_phone"                 : { type : String  , example: '0968726159'              },
+    "is_view_before"               : { type : Number  , example: 1                         },
+    "package_length"               : { type : Number  , example: 10                        },
+    "package_width"                : { type : Number  , example: 10                        },
+    "package_height"               : { type : Number  , example: 10                        },
+    "total_weight"                 : { type : Number  , example: 500                       },
+    //-------------------- Thông tin sau khi tạo ----------------------------------------
+    "id"                           : { type : String  , example: 1010151323                },
+    "created_at"                   : { type : Date    , example: "2019-03-05T03:47:06.72Z" },
+    "status"                       : { type : String  , example: "success"                 },
+    "updated_at"                   : { type : Date    , example: "2019-03-05T03:47:06.72Z" },
+    "carrier_status_name"          : { type : String  , example: "Chờ lấy hàng"            },
+    "carrier_cod_status_name"      : { type : String  , example: "Chưa nhận"               },
+    "carrier_status_code"          : { type : String  , example: "readytopick"             },
+    "carrier_cod_status_code"      : { type : String  , example: "codpending"              },
+    "ready_to_pick_date"           : { type : Date    , example: "2019-03-05T03:47:04Z"    },
+    "picking_date"                 : { type : Date    , default: null                      },
+    "delivering_date"              : { type : Date    , default: null                      },
+    "delivered_date"               : { type : Date    , default: null                      },
+    "return_date"                  : { type : Date    , default: null                      },
+    "not_meet_customer_date"       : { type : Date    , default: null                      },
+    "waiting_for_return_date"      : { type : Date    , default: null                      },
+    "cod_paid_date"                : { type : Date    , default: null                      },
+    "cod_receipt_date"             : { type : Date    , default: null                      },
+    "cod_pending_date"             : { type : Date    , default: null                      },
+    "cod_not_receipt_date"         : { type : Date    , default: null                      },
+    "cancel_date"                  : { type : Date    , default: null                      },
   },
   //-------------- thông tin đơn hàng trả (thông tin thêm của refund) --------------------
   'order_refund': [     
@@ -201,7 +228,7 @@ Gồm 2 phần :
         11, // Đóng gói sai
         9 , // Khác
       ], type : Number, default : 0},
-      'requester'    : { description: 'Người yêu cầu trả'             , type : Number, default : 0 },
+      'requester'    : { description: 'Người yêu cầu trả, 1 : khách hàng, 3 : đơn vị vận chuyển', type : Number },
       'other_reason' : { description: 'Lý do, khi reason = lý do khác', type : String, default : ''},
       'user_id'      : { description: 'Nhân viên trả hàng'            , type : Number, default : 0 },
       "line_items" : [{
@@ -209,6 +236,16 @@ Gồm 2 phần :
         "quantity" : { description: 'Số lượng item', type : Number, default : 0},
       }],
       "created_at" : { description: 'Ngày trả', type : Date, default : null},
+      "note"       : { description: 'Ghi chú', type : String, default : null},
+      "restock"       : { description: 'Nhập kho sản phẩm trả ?', type : boolean, default : true},
+      "transactions" : { description: 'Nếu không truyền, hệ thống tự động sinh ra', type: [{
+        "amount"     : { type: String, example: -60000                           },
+        "created_at" : { type: Date  , example: "2019-03-05T04:53:37.057Z"       },
+        "gateway"    : { type: String, example: "Thanh toán khi giao hàng (COD)" },
+        "id"         : { type: Number, example: 1000484797                       },
+        "kind"       : { type: String, default: "refund"                         },
+        "status"     : { type: String, default: "success"                        },
+      }]}
     }
   ],
   //------------------------- Thông tin đổi hàng ---------------------
@@ -237,7 +274,7 @@ Gồm 2 phần :
       "created_at"      : { description: 'Ngày đổi hàng', type : Date, default   : null},
     }
   ],
-  "handle_discount"    : { description: 'Giảm giá tay tổng đơn hàng, theo mẫu : <TYPE=[fixed, percent]>#<VALUE>' example: 'fixed#500000', type : String, default : ''},
+  "handle_discount"    : { description: 'Giảm giá tay tổng đơn hàng, theo mẫu : <TYPE=[fixed, percent]>#<VALUE>', example: 'fixed#500000', type : String, default : ''},
 }
 ```
 
