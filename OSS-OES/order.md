@@ -7,6 +7,108 @@ Gồm 2 phần :
 * Seller :
   * tham khảo [Haravan Order API](https://docs.haravan.com/blogs/api-reference/1000018025-order#show)
 
+  ```js
+  {
+    'id'                       : {type: Number, require: true, unique: true},
+    'order_number'             : {type: String, default: ""},
+    "user_id"                  : {type: Number, default: null},
+    'location_id'              : {type: Number, default: 0},
+
+    'line_items'               : [{
+      "id"                     : {type: Number , default: 0    },
+      "price"                  : {type: Number , default: 0    , description: 'Giá sau cùng của sản phẩm'},
+      "price_original"         : {type: Number , default: 0    , description: 'Giá gốc của sản phẩm'},
+      "product_id"             : {type: Number , default: 0    },
+      "variant_id"             : {type: Number , default: 0    },
+      "quantity"               : {type: Number , default: 0    },
+      "gift_card"              : {type: Boolean, default: false},
+      "taxable"                : {type: Boolean, default: false},
+      "tax_lines"              : {type: String , default: ""   },
+      "barcode"                : {type: String , default: ""   },
+      "properties"             : [{
+        "name"  : { type : String, example: "Khuyến mãi"              },
+        "value" : { type : String, example: '1000116957 - KM_HEO_10K' },
+      }],
+      "total_discount"         : {type: Number, default: 0, description: 'Tổng tiền giảm giá của sản phẩm'},
+    }],
+    //----------------------- Giảm giá trên đơn hàng --------------
+    'total_discounts'          : {type: Number, default: 0},
+    'discount_codes'           : [{
+      "amount" : { type: Number, example: 50000          },
+      "code"   : { type: String, example: "KM_50K"       },
+      "type"   : { type: String, example: "fixed_amount" },
+    }], 
+    //------------------------ Khách hàng --------------------------
+    'customer_id'              : {type: Number, default: 0},
+    'email'                    : {type: String, default: ""},
+    'shipping_address'         : {
+      'address1'               : {type: String, default: ""},
+      'address2'               : {type: String, default: ""},
+      'city'                   : {type: String, default: ""},
+      'company'                : {type: String, default: ""},
+      'first_name'             : {type: String, default: ""},
+      'last_name'              : {type: String, default: ""},
+      'latitude'               : {type: Number, default: 0},
+      'longitude'              : {type: Number, default: 0},
+      'phone'                  : {type: String, default: ""},
+      'zip'                    : {type: String, default: ""},
+      'province_code'          : {type: String, default: ""},
+      'country_code'           : {type: String, default: ""},
+      'district_code'          : {type: String, default: ""},
+      'ward_code'              : {type: String, default: ""},
+    },
+    'shipping_lines'           : [{
+      "code"   : { type: String, example: "Giao hàng tận nơi"},
+      "price"  : { type: Number, example: 10000              },
+      "source" : { type: String                              },
+      "title"  : { type: String, example: "Giao hàng tận nơi"},
+    }],
+    'billing_address'          : {
+      'address1'               : {type: String, default: ""},
+      'address2'               : {type: String, default: ""},
+      'city'                   : {type: String, default: ""},
+      'company'                : {type: String, default: ""},
+      'first_name'             : {type: String, default: ""},
+      'id'                     : {type: Number, default: 0},
+      'last_name'              : {type: String, default: ""},
+      'phone'                  : {type: String, default: ""},
+      'zip'                    : {type: String, default: ""},
+      'province_code'          : {type: String, default: ""},
+      'country_code'           : {type: String, default: ""},
+      'district_code'          : {type: String, default: ""},
+      'ward_code'              : {type: String, default: ""}
+    },
+
+    //----------------------- Time ---------------------------
+    'cancelled_at'             : {type: Date, default: null},
+    'closed_at'                : {type: Date, default: null},
+    'created_at'               : {type: Date, default: Date.now},
+    'confirmed_at'             : {type: Date, default: Date.now},
+    'updated_at'               : {type: Date, default: Date.now},
+    'created_at'               : {type: Date, default: Date.now},
+    //------------------------ Status -----------------------
+    'cancel_reason'            : {type: String, default: ""},
+    'financial_status'         : {type: String, default: ""},
+    "closed_status"            : {type: String, default: ""},
+    "cancelled_status"         : {type: String, default: ""},
+    "confirmed_status"         : {type: String, default: ""},
+    'fulfillment_status'       : {type: String, default: ""},
+    //------------------------ + ----------------------------
+    'currency'                 : {type: String , default: 'VND' },
+    "is_cod_gateway"           : {type: Boolean, default: false },
+    'gateway'                  : {type: String                  },
+    'gateway_code'             : {type: String , lowercase: true},
+    'source'                   : {type: String , default: ""    },
+    'source_name'              : {type: String , default: ""    },     
+    'note_attributes'          : [],
+    'note'                     : {type: String, default: ""},
+
+    'fulfillments'             : [{}], // tham khảo : https://docs.haravan.com/blogs/api-reference/1000018043-fulfillment
+    'transactions'             : [{}], // tham khảo : https://docs.haravan.com/blogs/api-reference/1000018042-transaction
+    'refunds'                  : [{}], // tham khảo : https://docs.haravan.com/blogs/api-reference/1000017998-refund
+  }
+  ```
+
 * Dữ liệu mở rộng của OES :
 
 ```js
