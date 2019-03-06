@@ -127,12 +127,12 @@ Gồm 2 phần :
     'created_at'               : {type: Date, default: Date.now},
 
     ////------------------------ Status -----------------------
-    'cancel_reason'            : {type: String, default: ""},
-    'financial_status'         : {type: String, default: ""},
-    "closed_status"            : {type: String, default: ""},
-    "cancelled_status"         : {type: String, default: ""},
-    "confirmed_status"         : {type: String, default: ""},
-    'fulfillment_status'       : {type: String, default: ""},
+    'cancel_reason'            : {type: String,                       },
+    'financial_status'         : {type: String, example: "paid"       },
+    "closed_status"            : {type: String, example: "unclosed"   },
+    "cancelled_status"         : {type: String, example: "uncancelled"},
+    "confirmed_status"         : {type: String, example: "confirmed"  },
+    'fulfillment_status'       : {type: String, example: "fulfilled"  },
   }
   ```
 
@@ -144,7 +144,6 @@ Gồm 2 phần :
   "reorder_from_order_number" : { description: 'order number của đơn hàng cũ' , type : String , default : "" },
   "user_sale"                 : { description: 'Mã nhân viên bán hàng'        , type : Number , default : 0  },
   'shop_id'                   : { description: 'Mã cửa hàng'                  , type : Number , default : 0  },
-  "location_id"               : { description: 'Mã kho'                       , type : Number , default : 0  }, 
   //-------------------------------------- Thông tin xử lý đơn hàng --------------------------------------------------
   "status"                : { description: 'Trạng thái đơn hàng, xem bên dưới'     , type : Number  , default : 0    },
   "assign_employee_at"    : { description: 'Thời gian gán nhân viên xử lý'         , type : Date    , default : null },
