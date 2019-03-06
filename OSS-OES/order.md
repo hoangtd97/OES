@@ -1,5 +1,12 @@
 # Đồng bộ đơn hàng từ OSS => OES 
 
+- [Đồng bộ đơn hàng từ OSS => OES](#Đồng-bộ-đơn-hàng-từ-oss--oes)
+  - [Dữ liệu](#dữ-liệu)
+    - [Seller :](#seller-)
+    - [Dữ liệu mở rộng của OES :](#dữ-liệu-mở-rộng-của-oes-)
+    - [Danh sách trạng thái đơn hàng của OES :](#danh-sách-trạng-thái-đơn-hàng-của-oes-)
+    - [Danh sách nguồn đơn hàng ( sources )](#danh-sách-nguồn-đơn-hàng--sources-)
+
 ## Dữ liệu
 
 Gồm 2 phần :
@@ -95,15 +102,15 @@ Gồm 2 phần :
       //--------------------- Thông tin sau khi tạo -------------------------
       "id"             : { type: Number  , example: 1000484797                       },
       "created_at"     : { type: Date    , example: "2019-03-05T04:53:37.057Z"       },
-    }]}
+    }]},
 
     //------------------------ khác ----------------------------
     'currency'                 : {type: String , default: 'VND' },
     "is_cod_gateway"           : {type: Boolean, default: false },
-    'gateway'                  : {type: String                  },
-    'gateway_code'             : {type: String , lowercase: true},
-    'source'                   : {type: String , default: ""    },
-    'source_name'              : {type: String , default: ""    },     
+    'gateway'                  : {type: String , example: "Thanh toán khi giao hàng (COD)" },
+    'gateway_code'             : {type: String , lowercase: true, example: "cod" },
+    'source'                   : {type: String , default: "31"  }, // Xem danh sách nguồn bên dưới
+    'source_name'              : {type: String , default: "pos"  },     
     'note_attributes'          : [],
     'note'                     : {type: String, default: ""},
 
@@ -288,7 +295,7 @@ Gồm 2 phần :
 }
 ```
 
-* Danh sách trạng thái đơn hàng của OES :
+### Danh sách trạng thái đơn hàng của OES :
 
   | Mã   | Mô tả                  |
   | -    | -                      |
@@ -308,3 +315,29 @@ Gồm 2 phần :
   | 40   | Đã hoàn trả            |
   | 43   | Đã đổi                 |
   | 47   | Đã đổi - một phần      |
+
+### Danh sách nguồn đơn hàng ( sources )
+  Mã  | Tên
+  -   |-
+  1   | guphukien
+  3   | masoffer
+  5   | deca
+  7   | chat
+  9   | haravan
+  11	| facebook
+  13	| lazada
+  15	| adayroi
+  17	| callcenter
+  19	| zalora
+  21	| tiki
+  23	| lotte
+  25	| shoppe
+  27	| zalo
+  29	| web
+  31	| pos
+  33	| draft
+  35	| staff
+  37	| harafunel
+  39	| app_android
+  41	| app_ios
+  43	| harapos
