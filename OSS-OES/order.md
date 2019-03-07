@@ -4,8 +4,9 @@
   - [Dữ liệu](#dữ-liệu)
     - [Seller :](#seller-)
     - [Dữ liệu mở rộng của OES :](#dữ-liệu-mở-rộng-của-oes-)
-    - [Danh sách trạng thái đơn hàng của OES :](#danh-sách-trạng-thái-đơn-hàng-của-oes-)
-    - [Danh sách nguồn đơn hàng ( sources )](#danh-sách-nguồn-đơn-hàng--sources-)
+  - [Danh sách trạng thái đơn hàng của OES](#danh-sách-trạng-thái-đơn-hàng-của-oes)
+  - [Danh sách nguồn đơn hàng ( sources )](#danh-sách-nguồn-đơn-hàng--sources-)
+  - [Danh sách cổng thanh toán ( gateway )](#danh-sách-cổng-thanh-toán--gateway-)
 
 ## Dữ liệu
 
@@ -299,7 +300,7 @@ Gồm 2 phần :
 }
 ```
 
-### Danh sách trạng thái đơn hàng của OES :
+## Danh sách trạng thái đơn hàng của OES
 
   | Mã   | Mô tả                  |
   | -    | -                      |
@@ -320,7 +321,7 @@ Gồm 2 phần :
   | 43   | Đã đổi                 |
   | 47   | Đã đổi - một phần      |
 
-### Danh sách nguồn đơn hàng ( sources )
+## Danh sách nguồn đơn hàng ( sources )
   Mã  | Tên
   -   |-
   1   | guphukien
@@ -345,3 +346,12 @@ Gồm 2 phần :
   39	| app_android
   41	| app_ios
   43	| harapos
+
+## Danh sách cổng thanh toán ( gateway ) 
+
+* Tiền mặt
+* Thanh toán khi giao hàng (COD)
+* Thẻ Visa/Master card
+* Phiếu mua hàng
+* Momo
+* Bù trừ trên đơn hàng
