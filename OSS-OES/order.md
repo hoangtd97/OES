@@ -53,7 +53,7 @@ Gồm 2 phần :
       "type"   : { type: String, example: "fixed_amount" },
     }], 
     //------------------------ Khách hàng --------------------------
-    'customer_id'              : {type: Number, default: 0},
+    'customer_phone'           : {type: String, default: ""},
     'email'                    : {type: String, default: ""},
     'shipping_address'         : {
       'address1'               : {type: String, default: ""},
@@ -111,7 +111,12 @@ Gồm 2 phần :
     'gateway_code'             : {type: String , lowercase: true, example: "cod" },
     'source'                   : {type: String , default: "31"  }, // Xem danh sách nguồn bên dưới
     'source_name'              : {type: String , default: "pos"  },     
-    'note_attributes'          : [],
+    'note_attributes'          : [
+        {
+            "name"  : { description: 'Tên chương trình khuyến mãi'                , type: String, example:  'OSS_COUPON'                   },
+            "value" : { description: 'Giá trị khuyến mãi, format : <type>#<value>', type: String, example: ['FIXED#50000', 'PERCENTAGE#20']},
+        }
+    ],
     'note'                     : {type: String, default: ""},
 
     //--------------------- Thông tin sau khi tạo -----------------
