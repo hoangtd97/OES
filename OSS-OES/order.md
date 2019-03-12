@@ -96,10 +96,9 @@ Gồm 2 phần :
     "transactions" : { description: 'Nếu không truyền, hệ thống tự động sinh ra', type: [{
       //-------------------- Thông tin tạo ------------------------------------
       "amount"         : { type: String  , example: 60000                            },
-      "gateway"        : { type: String  , example: "Thanh toán khi giao hàng (COD)" },
+      "gateway"        : { type: String  , example: "Thanh toán khi giao hàng (COD)", description: 'Mặc định lấy gateway của đơn hàng' },
       "kind"           : { type: String  , default: "capture"                        },
       "status"         : { type: String  , default: "success"                        },
-      "is_cod_gateway" : { type: Boolean , default: false                            },
       //--------------------- Thông tin sau khi tạo -------------------------
       "id"             : { type: Number  , example: 1000484797                       },
       "created_at"     : { type: Date    , example: "2019-03-05T04:53:37.057Z"       },
@@ -107,7 +106,7 @@ Gồm 2 phần :
 
     //------------------------ khác ----------------------------
     'currency'                 : {type: String , default: 'VND' },
-    "is_cod_gateway"           : {type: Boolean, default: false },
+    "is_cod_gateway"           : {type: Boolean, default: false, description: 'Có sử dụng phương thức thanh toán khi giao hàng (COD) không ?' },
     'gateway'                  : {type: String , example: "Thanh toán khi giao hàng (COD)" },
     'gateway_code'             : {type: String , lowercase: true, example: "cod" },
     'source'                   : {type: String , default: "31"  }, // Xem danh sách nguồn bên dưới
