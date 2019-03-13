@@ -130,6 +130,7 @@ Gồm 2 phần :
     'confirmed_at'             : {type: Date, default: Date.now},
     'updated_at'               : {type: Date, default: Date.now},
     'created_at'               : {type: Date, default: Date.now},
+    'paid_at'                  : {type: Date, default: Date.now},
 
     ////------------------------ Status -----------------------
     'cancel_reason'            : {type: String,                       },
