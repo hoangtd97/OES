@@ -130,15 +130,28 @@ Gồm 2 phần :
     'confirmed_at'             : {type: Date, default: Date.now},
     'updated_at'               : {type: Date, default: Date.now},
     'created_at'               : {type: Date, default: Date.now},
-    'paid_at'                  : {type: Date, default: Date.now},
+    'paid_at'                  : {type: Date, default: Date.now, description : 'Ngày hoàn tất thanh toán' },
 
     ////------------------------ Status -----------------------
-    'cancel_reason'            : {type: String,                       },
-    'financial_status'         : {type: String, example: "paid"       },
-    "closed_status"            : {type: String, example: "unclosed"   },
-    "cancelled_status"         : {type: String, example: "uncancelled"},
-    "confirmed_status"         : {type: String, example: "confirmed"  },
-    'fulfillment_status'       : {type: String, example: "fulfilled"  },
+    'cancel_reason'            : {type: String, enum: [
+      "customer" , // The customer changed or cancelled the order.
+      "fraud"    , // The order was fraudulent.
+      "inventory", // Items in the order were not in inventory.
+      "other"    , // The order was cancelled for a reason not in the list above.
+    ]},
+    'financial_status'         : {type: String, example: "paid", enum : [
+      "pending"           , // The finances are pending.
+      "authorized"        , // The finances have been authorized.
+      "partiallypaid"     , // The finances have been partially paid.
+      "paid"              , // The finances have been paid. (This is the default value.)
+      "partiallyrefunded" , // The finances have been partially refunded.
+      "refunded"          , // The finances have been refunded.
+      "voided"            , // The finances have been voided.
+    ]},
+    "closed_status"      : {type: String, enum: ["unclosed"    , "closed"   ] },
+    "cancelled_status"   : {type: String, enum: ["uncancelled" , "cancelled"] },
+    "confirmed_status"   : {type: String, enum: ["unconfirmed" , "confirmed"] },
+    'fulfillment_status' : {type: String, enum: ["notfulfilled", "fulfilled"] },
   }
   ```
 
