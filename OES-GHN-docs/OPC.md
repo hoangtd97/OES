@@ -12,6 +12,7 @@
     - [Response](#response-1)
   - [Xử lý đơn hàng](#xử-lý-đơn-hàng)
     - [Request](#request-2)
+      - [Hết hàng](#Hết-hàng)
       - [Đóng gói - Chờ giao](#Đóng-gói---chờ-giao)
       - [Đã giao vận chuyển](#Đã-giao-vận-chuyển)
       - [Hoàn tất đơn hàng](#Hoàn-tất-đơn-hàng)
@@ -1286,6 +1287,14 @@
 ## Xử lý đơn hàng
 
 ### Request   
+
+####  Hết hàng
+```
+  * Path        : /order-online/${order_id}/out-of-stock
+  * Simple path : /order-online/1001140437/out-of-stock
+  * Method      : PUT
+  * Body        : None
+```
 
 ####  Đóng gói - Chờ giao  
 ```
